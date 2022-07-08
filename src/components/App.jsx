@@ -44,7 +44,7 @@ export class App extends React.Component {
   render() {
 const { contacts, filter } = this.state;    
 const visibleName = this.getVisibleName();
-
+console.log(visibleName)
 
   return (
     <div
