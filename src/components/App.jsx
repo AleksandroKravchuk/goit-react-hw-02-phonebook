@@ -32,10 +32,10 @@ export class App extends React.Component {
       }));
       Notify.success(`${name} added in contacts`);
     } else if (chekedName) {
-      return Notify.failure(`${name}is already in contacts`);
+      return Notify.failure(`${name} is already in contacts`);
     }
     if (chekedTel) {
-      return Notify.failure(`Number${number}is already in contacts`);
+      return Notify.failure(`Number ${number} is already in contacts`);
     }
   };
 
