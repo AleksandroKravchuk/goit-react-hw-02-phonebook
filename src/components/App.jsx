@@ -30,6 +30,7 @@ export class App extends React.Component {
       this.setState(prevState => ({
         contacts: [...prevState.contacts, nameItem],
       }));
+      Notify.success(`${name} added in contacts`);
     } else if (chekedName) {
       return Notify.failure(`${name}is already in contacts`);
     }
