@@ -11,40 +11,47 @@ export class App extends React.Component {
   filter: '',
   }
 
-  addName = (name, number) => {
+addName = (name, number) => {
     const nameItem = {
       name,
       id: nanoid(),
       number,
     }
-       this.setState(prevState => ({
-      contacts:[...prevState.contacts, nameItem]
+
+    const chekedName = this.state.contacts.find(item => {
+      return item.name===name
+    } 
+)
+    const chekedTel = this.state.contacts.find(item => {
+      return item.number===number
+    } 
+)
+    if (!chekedName & !chekedTel) {
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts,nameItem]  
     }))
-//     this.setState(prevState => ({
-//       contacts: prevState.contacts.map(item => {
-// console.log(item)
-//         // if (item.name === name) {
-//         //   return {
-//         // [...prevState.contacts, nameItem]
-//         //   }
-//         // }
-//       })
-//     }))
-  
+    }else
+    return alert("nnnnnnn") 
   }  
+
   onChange = (evt) => {
     this.setState({ filter: evt.currentTarget.value })
   };
   getVisibleName = () => {
     const { contacts, filter } = this.state;
-    const normalazedFilter = filter.toLowerCase;
+    const normalazedFilter = filter.toLowerCase();
     return contacts.filter(item=>item.name.toLowerCase().includes(normalazedFilter))
   }
-  
+  onDeleteName = (id) => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(item=>item.id!==id)
+    }))
+ 
+  }
   render() {
-const { contacts, filter } = this.state;    
+const {filter} = this.state;    
 const visibleName = this.getVisibleName();
-console.log(visibleName)
+
 
   return (
     <div
@@ -57,7 +64,7 @@ console.log(visibleName)
       </Section>
       <Section title={"Contacts"}>
       <Filter value={filter} onChange={this.onChange}></Filter>
-      <Contacts name={contacts} ></Contacts>
+      <Contacts name={visibleName} deleteName={this.onDeleteName}></Contacts>
       </Section>
     </div>
   );

@@ -1,13 +1,13 @@
 import React from "react";
-import {ContactsList, ContactsItem, ContactsText,Tel } from "./Contacts.styled";
+import {ContactsList, ContactsItem, ContactsText,Tel,ButtonDelete } from "./Contacts.styled";
 
-const Contacts = ({id, name, number }) => (
+const Contacts = ({name, deleteName }) => (
  
   
 <ContactsList>
         {name.map((item) => (
             <ContactsItem key={item.id}>
-                <ContactsText>{item.name}: <Tel>{item.number}</Tel></ContactsText>
+                <ContactsText>{item.name}: <Tel>{item.number}</Tel><ButtonDelete onClick={()=>deleteName(item.id)}>Delete</ButtonDelete> </ContactsText>
             </ContactsItem>
         ))}
      </ContactsList>
