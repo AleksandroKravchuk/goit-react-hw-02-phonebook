@@ -6,18 +6,19 @@ export class Form extends React.Component {
     name: '',
     number: '',
   };
-  onAddContact = evt => {
-    this.setState({ name: evt.target.value });
+
+  onAddInfo = evt => {
+    const { name, value } = evt.target;
+    this.setState({ [name]: value });
   };
-  onAddNumber = evt => {
-    this.setState({ number: evt.target.value });
-  };
+
   hendelSubmit = evt => {
+    const { name, number } = this.state;
     evt.preventDefault();
-    if (this.state.name === '' || this.state.number === '') {
+    if (name === '' || number === '') {
       return;
     }
-    this.props.onSubmit(this.state.name, this.state.number);
+    this.props.onSubmit(name, number);
     this.setState({ name: '', number: '' });
   };
   render() {
@@ -33,7 +34,7 @@ export class Form extends React.Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             value={name}
-            onChange={this.onAddContact}
+            onChange={this.onAddInfo}
           ></InputName>
         </Label>{' '}
         <br></br>
@@ -46,7 +47,7 @@ export class Form extends React.Component {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
             value={number}
-            onChange={this.onAddNumber}
+            onChange={this.onAddInfo}
           ></InputName>
         </Label>{' '}
         <br></br>

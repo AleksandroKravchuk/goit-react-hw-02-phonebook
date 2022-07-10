@@ -18,9 +18,9 @@ export class App extends React.Component {
       id: nanoid(),
       number,
     };
-
+    const normalizedName = name.toLowerCase();
     const chekedName = this.state.contacts.find(item => {
-      return item.name === name;
+      return item.name.toLowerCase() === normalizedName;
     });
     const chekedTel = this.state.contacts.find(item => {
       return item.number === number;

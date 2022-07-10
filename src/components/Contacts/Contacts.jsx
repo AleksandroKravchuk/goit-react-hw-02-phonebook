@@ -1,23 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  ContactsList,
-  ContactsItem,
-  ContactsText,
-  Tel,
-  ButtonDelete,
-} from './Contacts.styled';
+import { ContactsList, ContactsItem } from './Contacts.styled';
+import ContactName from 'components/ContactItem/ContaciItem';
 
 const Contacts = ({ name, deleteName }) => (
   <ContactsList>
     {name.map(item => (
       <ContactsItem key={item.id}>
-        <ContactsText>
-          {item.name}: <Tel>{item.number}</Tel>
-          <ButtonDelete onClick={() => deleteName(item.id)}>
-            Delete
-          </ButtonDelete>{' '}
-        </ContactsText>
+        <ContactName
+          name={item.name}
+          tel={item.number}
+          id={item.id}
+          deleteName={deleteName}
+        ></ContactName>
       </ContactsItem>
     ))}
   </ContactsList>
